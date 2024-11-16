@@ -1,10 +1,7 @@
-import React from 'react'
-
+import Popularanime from "../components/Popularanime"
 const Home = () => {
   return (
-    <div>
-      
-    </div>
+    <Popularanime></Popularanime>
   )
 }
 
