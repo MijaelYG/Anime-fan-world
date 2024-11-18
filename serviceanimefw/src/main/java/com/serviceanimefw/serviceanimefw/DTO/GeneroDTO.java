@@ -7,7 +7,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RolDTO {
+public class GeneroDTO {
+
     private Long id;
-    private String rol;
+
+    private String genero;
 }
