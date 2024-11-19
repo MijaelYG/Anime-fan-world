@@ -14,13 +14,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "genero")
-public class Genero {
+@Table(name= "tipo")
+public class Tipo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_genero")
+    @Column(name = "id_tipo")
     private Long id;
 
-    @Column(name = "genero")
-    private String Genero;
+    @Column(name = "tipo")
+    private String tipo;
 }

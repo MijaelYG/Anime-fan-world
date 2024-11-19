@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +16,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "genero")
-public class Genero {
+@Table(name = "anime_genero")
+public class Anime_genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_genero")
+    @Column(name = "id_anime_genero")
     private Long id;
 
-    @Column(name = "genero")
-    private String Genero;
+    @ManyToOne
+    @JoinColumn(name = "id_anime")
+    private Anime anime;
+
+    @ManyToOne
+    @JoinColumn(name = "id_genero")
+    private Genero genero; 
 }
