@@ -37,32 +37,34 @@ public class GeneroController {
         }
     }
 
-    /* 
+    
     @PostMapping()
-    public ResponseEntity<?> create(@RequestBody GeneroDTO generoDTOs) {
+    public ResponseEntity<?> CrearGenero(@RequestBody GeneroDTO generoDTOs) {
         try {
-            return new ResponseEntity<>("Create Result", HttpStatus.OK);
+            String respuesta = generoService.CrearGenero(generoDTOs);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @PutMapping()
-    public ResponseEntity<?> update(@RequestBody GeneroDTO generoDTOs) {
+    public ResponseEntity<?> ActualizarGenero(@RequestBody GeneroDTO generoDTOs) {
         try {
-            return new ResponseEntity<>("Update Result", HttpStatus.OK);
+            String respuesta = generoService.ActualizarGenero(generoDTOs);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
-            return new ResponseEntity<>("Destroy Result", HttpStatus.OK);
+            String respuesta = generoService.EliminarGenero(id);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    */
+    
 }
