@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.serviceanimefw.serviceanimefw.DTO.TipoDTO;
 
-public interface RolTipo {
+public interface TipoService {
  
     List<TipoDTO> ObtenerTodosLosTipos();
 }

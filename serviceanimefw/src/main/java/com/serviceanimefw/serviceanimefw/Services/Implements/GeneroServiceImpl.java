@@ -32,7 +32,7 @@ public class GeneroServiceImpl implements GeneroService {
     }
 
     @Override
-    public String CrearGenero(GeneroDTO generoDTO) {
+    public String AgregarGenero(GeneroDTO generoDTO) {
         Genero generos = mapearEntidad(generoDTO);
         generoRepository.save(generos);
        return "El genero se ha creado correctamente";
@@ -84,8 +84,5 @@ public class GeneroServiceImpl implements GeneroService {
 
         return genero;
     }
-
-
-
 
 }

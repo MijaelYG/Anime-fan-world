@@ -39,9 +39,9 @@ public class GeneroController {
 
     
     @PostMapping()
-    public ResponseEntity<?> CrearGenero(@RequestBody GeneroDTO generoDTOs) {
+    public ResponseEntity<?> AgregarGenero(@RequestBody GeneroDTO generoDTOs) {
         try {
-            String respuesta = generoService.CrearGenero(generoDTOs);
+            String respuesta = generoService.AgregarGenero(generoDTOs);
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

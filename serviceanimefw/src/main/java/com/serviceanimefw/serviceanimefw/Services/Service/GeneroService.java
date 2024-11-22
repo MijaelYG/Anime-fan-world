@@ -8,7 +8,7 @@ public interface GeneroService {
 
     List<GeneroDTO> ObtenerTodosLosGeneros();
     GeneroDTO ObtenerGeneroPorId(Long id);
-    String CrearGenero(GeneroDTO generoDTO);
+    String AgregarGenero(GeneroDTO generoDTO);
     String ActualizarGenero(GeneroDTO generodto);
     String EliminarGenero(Long id);
 }
