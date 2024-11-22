@@ -65,7 +65,6 @@ public class GeneroServiceImpl implements GeneroService {
         }
     }
     
-    // entidad a DTO
     private GeneroDTO mapearDTO(Genero genero) {
         GeneroDTO generoDTO = new GeneroDTO();
 
@@ -75,7 +74,6 @@ public class GeneroServiceImpl implements GeneroService {
         return generoDTO;
     }
 
-    // DTO a entidad
     private Genero mapearEntidad(GeneroDTO generoDTO) {
         Genero genero = new Genero();
 

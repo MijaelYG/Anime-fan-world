@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.serviceanimefw.serviceanimefw.DTO.AnimeDTO;
 import com.serviceanimefw.serviceanimefw.Entity.Anime;
@@ -13,6 +14,7 @@ import com.serviceanimefw.serviceanimefw.Repositories.AnimeRepository;
 import com.serviceanimefw.serviceanimefw.Repositories.TipoRepository;
 import com.serviceanimefw.serviceanimefw.Services.Service.AnimeService;
 
+@Service
 public class AnimeServiceImpl implements AnimeService{
 
     @Autowired
@@ -42,7 +44,6 @@ public class AnimeServiceImpl implements AnimeService{
     }
 
     
-    // entidad a DTO
     private AnimeDTO mapearDTO(Anime anime) {
         AnimeDTO animeDTO = new AnimeDTO();
 
@@ -57,7 +58,6 @@ public class AnimeServiceImpl implements AnimeService{
         return animeDTO;
     }
 
-    // DTO a entidad
     private Anime mapearEntidad(AnimeDTO animeDTO) {
         Anime anime = new Anime();
         anime.setId(animeDTO.getId());

@@ -24,7 +24,6 @@ public class RolServiceImpl implements RolService {
     }
     
 
-    // entidad a DTO
     private RolDTO mapearDTO(Rol rol) {
         RolDTO rolDTO = new RolDTO();
 
