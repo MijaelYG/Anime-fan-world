@@ -19,19 +19,20 @@
 .boy-login{
     position: absolute;
     height: 650px;
-    transform: scaleX(-1);
+    transform: scaleX(-1) translateX(60%);
     object-fit: contain;
-    left: -220px;
+    left: 0px;
     top: 0;
     bottom: 0;
     margin: auto;
+    transition: 0.5s;
 }
 
 .icon-logo{
     display: flex;
     margin: auto;
-    width: 300px;
-    padding-bottom: 1rem;
+    width: 330px;
+    margin-bottom: 1.8rem;
 }
 
 .icon-logo img{

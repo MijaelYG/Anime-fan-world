@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Iconninja from "../static/Iconninja";
-import Logo from "../assets/img/logoAFW.png";
+import Logo from "../assets/img/IconoAFW.webp";
 import Searchicon from "../static/Searchicon";
 import Arrowdoubledown from "../static/Arrowdoubledown";
 import { Link } from "react-router-dom";
