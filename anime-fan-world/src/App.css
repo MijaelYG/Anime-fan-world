@@ -3,5 +3,9 @@
   width: auto;
   padding-left: 100px;
   padding-right: 0px;
-  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.applogin{
+  height: auto;
+  width: auto;
 }
