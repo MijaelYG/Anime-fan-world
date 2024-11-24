@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.serviceanimefw.serviceanimefw.DTO.UsuarioDTO;
@@ -40,6 +41,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     public String AgregarUsuario(UsuarioDTO usuarioDTO) {
         Optional<Rol> rol = rolRepository.findById(usuarioDTO.getId_rol());
         if(rol.isPresent()){
+            String password = BCrypt.hashpw(usuarioDTO.getPassword(), BCrypt.gensalt());
+            usuarioDTO.setPassword(password);
             Usuario usuario = mapearEntidad(usuarioDTO);
             usuario.setRol(rol.get());
             usuarioRepository.save(usuario);
@@ -63,6 +66,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         return "EHubo un error al actualizar el usuario.";
 
+    }
+
+    @Override
+    public UsuarioDTO VerificarSesion(UsuarioDTO usuarioDTO) {
+        //Usuario usuario = mapearEntidad(usuarioDTO);
+        return usuarioDTO;
     }
  
     private UsuarioDTO mapearDTO(Usuario usuario){
@@ -91,4 +100,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         return usuario;
     }
+
 }

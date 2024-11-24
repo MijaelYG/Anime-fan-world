@@ -4,7 +4,7 @@ import Logo from "../assets/img/IconoAFW.webp";
 import Searchicon from "../static/Searchicon";
 import Arrowdoubledown from "../static/Arrowdoubledown";
 import { Link } from "react-router-dom";
-import "./Header.css";
+import styles from "../components/Header.module.css";
 
 const Header = () => {
   const [arrayABC] = useState([
@@ -31,7 +31,7 @@ const Header = () => {
   ]);
   function ABCClick() {
     return (
-      <div className="o-letters">
+      <div className={styles.oletters}>
         <ul>
           {arrayABC.map((letter, n) => (
             <li key={n}>{letter}</li>
@@ -41,13 +41,13 @@ const Header = () => {
     );
   }
   return (
-    <div className="header-main">
-      <div className="logo-abc">
-        <div className="logo-anime">
+    <div className={styles.headermain}>
+      <div className={styles.logoabc}>
+        <div className={styles.logoanime}>
           <img src={Logo} alt="" />
         </div>
-        <div className="abc-nav">
-          <div className="search-abc">
+        <div className={styles.abcnav}>
+          <div className={styles.searchabc}>
             <ul>
               <li>A</li>
               <li>B</li>
@@ -62,20 +62,19 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      <div className="cont-header">
-        <div className="search-nav">
+      <div className={styles.contheader}>
+        <div className={styles.searchnav}>
           <input type="text" placeholder="Buscar..." />
-          <div className="search-logo">
+          <div className={styles.searchlogo}>
             {" "}
             <Searchicon />
           </div>
         </div>
-        <Link className="login" to={"/Login"}>
-          <div className="login-logo">
+        <Link className={styles.login} to={"/Login"}>
+          <div className={styles.loginlogo}>
             <Iconninja />
           </div>
-          <div className="textlogin">LOGIN</div>
+          <div className={styles.textlogin}>LOGIN</div>
         </Link>
       </div>
     </div>

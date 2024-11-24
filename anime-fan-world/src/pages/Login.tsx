@@ -1,38 +1,38 @@
-import "./Login.css";
 import Logo from "../assets/img/IconoAFW.webp";
 import Iconuser from "../static/IconUser";
 import IconPassword from "../static/IconPassword";
 import LoginBoy from "../assets/img/LoginBoy.webp";
 import { Link } from "react-router-dom";
+import styles from "./Login.module.css";
 
 const Login = () => {
   return (
-    <div className="main-login">
-      <div className="cont-login">
-        <img className="boy-login" src={LoginBoy}></img>
-        <div className="icon-logo">
+    <div className={styles.mainlogin}>
+      <div className={styles.contlogin}>
+        <img className={styles.boylogin} src={LoginBoy}></img>
+        <div className={styles.iconlogo}>
           <Link to={"/"}>
             <img src={Logo} alt="" />
           </Link>
         </div>
-        <div className="title">Iniciar Sesión</div>
-        <form className="formlogin" action="">
-          <div className="inputlogin">
+        <div className={styles.title}>Iniciar Sesión</div>
+        <form className={styles.formlogin} action="">
+          <div className={styles.inputlogin}>
             <input type="text" required />
             <Iconuser></Iconuser>
-            <span className="line"></span>
-            <span className="text-p">Usuario</span>
+            <span className={styles.line}></span>
+            <span className={styles.textp}>Usuario</span>
           </div>
-          <div className="inputlogin">
+          <div className={styles.inputlogin}>
             <input type="password" required />
             <IconPassword></IconPassword>
-            <span className="line"></span>
-            <span className="text-p">Contraseña</span>
+            <span className={styles.line}></span>
+            <span className={styles.textp}>Contraseña</span>
           </div>
-          <button className="btn-iniciar">INICIAR SESIÓN</button>
+          <button className={styles.btniniciar}>INICIAR SESIÓN</button>
         </form>
-        <div className="register">
-          <p>¿No tienes cuenta?</p> <span>Registrate</span>
+        <div className={styles.register}>
+          <p>¿No tienes cuenta?</p> <Link to={"/Register"}>Registrate</Link>
         </div>
       </div>
     </div>

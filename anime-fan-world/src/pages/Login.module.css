@@ -1,13 +1,9 @@
-.main-login{
-    background-image: url(../assets/img/loginbanner.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+.mainlogin{
     height: 100vh;
     display: flex;
 }
 
-.cont-login{
+.contlogin{
     background-color: rgb(255, 255, 255);
     width: 440px;
     border-radius: 15px;
@@ -16,7 +12,7 @@
     position: relative;
 }
 
-.boy-login{
+.boylogin{
     position: absolute;
     height: 650px;
     transform: scaleX(-1) translateX(60%);
@@ -28,14 +24,14 @@
     transition: 0.5s;
 }
 
-.icon-logo{
+.iconlogo{
     display: flex;
     margin: auto;
     width: 330px;
     margin-bottom: 1.8rem;
 }
 
-.icon-logo img{
+.iconlogo img{
     width: 100%;
 }
 
@@ -96,7 +92,7 @@
     transition: 0.2s linear;
 }
 
-.text-p{
+.textp{
     position: absolute;
     color: rgb(201, 201, 201);
     top: 0;
@@ -123,22 +119,19 @@
     background-color: var(--primary-color);
 }
 
-.inputlogin input:focus + svg + .line + .text-p {
+.inputlogin input:focus + svg + .line + .textp {
     color: var(--primary-color);
     transform: translateY(-18px);
     font-size: 0.75rem;
 }
 
-.inputlogin input:valid + svg + .line + .text-p {
+.inputlogin input:valid + svg + .line + .textp {
     color: var(--primary-color);
     transform: translateY(-18px);
     font-size: 0.75rem;
 }
 
-
-
-
-.btn-iniciar{
+.btniniciar{
     border: none;
     width: 100%;
     background-color: var(--primary-color);
@@ -151,7 +144,7 @@
     font-weight: 600;
 }
 
-.btn-iniciar:hover{
+.btniniciar:hover{
     background-color: rgb(23, 189, 255);
 }
 
@@ -162,9 +155,15 @@
     align-items: center;
 }
 
-.register span{
+.register a{
+    text-decoration: none;
     padding-left: 8px;
     color: var(--primary-color);
     font-weight: 500;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.register a:hover{
+    color: rgb(0, 204, 255);
 }

@@ -10,4 +10,5 @@ public interface UsuarioService {
     UsuarioDTO ObtenerUsuarioPorId(Long id);
     String AgregarUsuario(UsuarioDTO usuarioDTO);
     String ActualizarUsuario(UsuarioDTO usuarioDTO);
+    UsuarioDTO VerificarSesion(UsuarioDTO usuarioDTO);
 }

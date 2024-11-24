@@ -1,4 +1,5 @@
 import "./Popularanime.css"
+
 const Popularanime = () => {
   return (
     <div className="main-pa">
