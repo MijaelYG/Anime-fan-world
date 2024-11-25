@@ -17,7 +17,7 @@
     height: 650px;
     transform: scaleX(-1) translateX(60%);
     object-fit: contain;
-    left: 0px;
+    left: 0;
     top: 0;
     bottom: 0;
     margin: auto;

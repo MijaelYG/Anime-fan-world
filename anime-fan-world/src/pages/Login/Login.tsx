@@ -1,7 +1,7 @@
-import Logo from "../assets/img/IconoAFW.webp";
-import Iconuser from "../static/IconUser";
-import IconPassword from "../static/IconPassword";
-import LoginBoy from "../assets/img/LoginBoy.webp";
+import Logo from "../../assets/img/IconoAFW.webp";
+import Iconuser from "../../assets/Icons/IconUser";
+import IconPassword from "../../assets/Icons/IconPassword";
+import LoginBoy from "../../assets/img/LoginBoy.webp";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
@@ -29,7 +29,7 @@ const Login = () => {
             <span className={styles.line}></span>
             <span className={styles.textp}>Contraseña</span>
           </div>
-          <button className={styles.btniniciar}>INICIAR SESIÓN</button>
+          <button type="submit" className={styles.btniniciar}>INICIAR SESIÓN</button>
         </form>
         <div className={styles.register}>
           <p>¿No tienes cuenta?</p> <Link to={"/Register"}>Registrate</Link>

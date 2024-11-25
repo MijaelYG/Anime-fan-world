@@ -11,7 +11,7 @@ import com.serviceanimefw.serviceanimefw.DTO.UsuarioDTO;
 import com.serviceanimefw.serviceanimefw.Services.Service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuariocontroller")
+@RequestMapping("/api/usuario")
 public class UsuarioController {
 
     @Autowired

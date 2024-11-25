@@ -10,7 +10,7 @@ import com.serviceanimefw.serviceanimefw.DTO.AnimeDTO;
 import com.serviceanimefw.serviceanimefw.Services.Service.AnimeService;
 
 @RestController
-@RequestMapping("/api/animecontroller")
+@RequestMapping("/api/anime")
 public class AnimeController {
 
     @Autowired

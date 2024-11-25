@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Iconninja from "../static/Iconninja";
+//import { useState } from "react";
+import IconNinja from "../assets/Icons/Iconninja";
 import Logo from "../assets/img/IconoAFW.webp";
-import Searchicon from "../static/Searchicon";
-import Arrowdoubledown from "../static/Arrowdoubledown";
+import Searchicon from "../assets/Icons/Searchicon";
+import Arrowdoubledown from "../assets/Icons/Arrowdoubledown";
 import { Link } from "react-router-dom";
 import styles from "../components/Header.module.css";
 
 const Header = () => {
-  const [arrayABC] = useState([
+  /*const [arrayABC] = useState([
     "G",
     "H",
     "I",
@@ -39,7 +39,7 @@ const Header = () => {
         </ul>
       </div>
     );
-  }
+  }*/
   return (
     <div className={styles.headermain}>
       <div className={styles.logoabc}>
@@ -72,7 +72,7 @@ const Header = () => {
         </div>
         <Link className={styles.login} to={"/Login"}>
           <div className={styles.loginlogo}>
-            <Iconninja />
+            <IconNinja />
           </div>
           <div className={styles.textlogin}>LOGIN</div>
         </Link>
