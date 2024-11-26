@@ -37,9 +37,10 @@ public class UsuarioController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<?> AgregarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         try {
-            return new ResponseEntity<>("Create Result", HttpStatus.OK);
+            String respuesta = usuarioService.AgregarUsuario(usuarioDTO);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

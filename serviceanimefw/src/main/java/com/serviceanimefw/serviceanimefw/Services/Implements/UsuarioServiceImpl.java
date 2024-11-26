@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.serviceanimefw.serviceanimefw.DTO.UsuarioDTO;
@@ -39,27 +38,39 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public String AgregarUsuario(UsuarioDTO usuarioDTO) {
-        Optional<Rol> rol = rolRepository.findById(usuarioDTO.getId_rol());
-        if(rol.isPresent()){
-            String password = BCrypt.hashpw(usuarioDTO.getPassword(), BCrypt.gensalt());
-            usuarioDTO.setPassword(password);
-            Usuario usuario = mapearEntidad(usuarioDTO);
-            usuario.setRol(rol.get());
-            usuarioRepository.save(usuario);
-            return "El usuario fue registrado correctamente.";
-        }else{
-            return "El rol no existe.";
+        try {
+            usuarioDTO.setEstado("activo");
+            long tipo = 2;
+            usuarioDTO.setId_rol(tipo);
+            if (usuarioDTO.getNombres().trim().isEmpty() || usuarioDTO.getApellidos().trim().isEmpty()
+                    || usuarioDTO.getCorreo().trim().isEmpty()
+                    || usuarioDTO.getPassword().trim().isEmpty() || usuarioDTO.getUsuario().trim().isEmpty()) {
+                throw new RuntimeException("Los datos estan vacios.");
+            } else {
+                Optional<Rol> rol = rolRepository.findById(usuarioDTO.getId_rol());
+                if (rol.isPresent()) {
+                    Usuario usuario = mapearEntidad(usuarioDTO);
+                    usuario.setRol(rol.get());
+                    usuarioRepository.save(usuario);
+                    return "El usuario fue registrado correctamente.";
+                } else {
+                    throw new RuntimeException("El rol no existe.");
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error al crear el usuario", e);
         }
+
     }
 
     @Override
     public String ActualizarUsuario(UsuarioDTO usuarioDTO) {
-        if(usuarioDTO.getId() == null){
+        if (usuarioDTO.getId() == null) {
             return "El ID es necesario para actualizar.";
         }
         Optional<Rol> rol = rolRepository.findById(usuarioDTO.getId_rol());
 
-        if(rol.isPresent()){
+        if (rol.isPresent()) {
             Usuario usuario = mapearEntidad(usuarioDTO);
             usuarioRepository.save(usuario);
             return "El usuario fue actualizado correctamente.";
@@ -70,11 +81,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioDTO VerificarSesion(UsuarioDTO usuarioDTO) {
-        //Usuario usuario = mapearEntidad(usuarioDTO);
+        // Usuario usuario = mapearEntidad(usuarioDTO);
         return usuarioDTO;
     }
- 
-    private UsuarioDTO mapearDTO(Usuario usuario){
+
+    private UsuarioDTO mapearDTO(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setId(usuario.getId());
         usuarioDTO.setNombres(usuario.getNombres());
@@ -88,7 +99,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioDTO;
     }
 
-    private Usuario mapearEntidad(UsuarioDTO usuarioDTO){
+    private Usuario mapearEntidad(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
         usuario.setId(usuarioDTO.getId());
         usuario.setNombres(usuarioDTO.getNombres());

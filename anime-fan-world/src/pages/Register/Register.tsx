@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import styles from "./Register.module.css";
 import Logo from "../../assets/img/IconoAFW.webp";
 import IconUser from "../../assets/Icons/IconUser";
@@ -8,21 +9,31 @@ import IconEmail from "../../assets/Icons/IconEmail";
 import IconPassword from "../../assets/Icons/IconPassword";
 import IconPasswordOpen from "../../assets/Icons/IconPasswordOpen";
 import RegisterBoy from "../../assets/img/RegisterBoy.webp";
-import { fetchCrearCuentaUsuario, Usuario } from "../../Services/UserServices";
-import { useState } from "react";
+import { fetchCrearCuentaUsuario } from "../../Services/UserServices";
+import { Usuario } from "../../Interfaces/UserInterface";
 
 const Register = () => {
+  const [passwordval, setPasswordval] = useState("");
   const [usuario, setUsuario] = useState<Usuario>({
-    Nombres:'',
-    Apellidos:'',
-    Usuario: '',
-    Password:'',
-    Correo:''
+    nombres:"",
+    apellidos:"",
+    correo:"",
+    usuario:"",
+    password:"",
   });
 
-  const btnregister = (e: React.FormEvent<HTMLFormElement>)=> {
+  const btnregister = async (e: React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault();
-    console.log(usuario.Nombres);
+    if(usuario.usuario.includes(" ") || usuario.correo.includes(" ") || usuario.password.includes(" ") || passwordval.includes(" ")){
+      console.log("sin espacios porfavor")
+    }else{
+      if(usuario.password === passwordval){
+        const respuesta = await fetchCrearCuentaUsuario(usuario);
+        console.log(respuesta);
+      }else{
+        console.log("contraseñas diferentes");
+      }
+    }
   }
 
   return (
@@ -37,37 +48,37 @@ const Register = () => {
         <div className={styles.title}>Registrate</div>
         <form onSubmit={btnregister} className={styles.formregister}>
           <div className={styles.inputregister}>
-            <input type="text" value={usuario.Nombres} onChange={((e) => setUsuario({...usuario, Nombres: e.target.value}))} required />
+            <input type="text" value={usuario.nombres} onChange={(e) => setUsuario({...usuario, nombres: e.target.value})} required />
             <IconUser></IconUser>
             <span className={styles.line}></span>
             <span className={styles.textp}>Nombres</span>
           </div>
           <div className={styles.inputregister}>
-            <input type="text" value={usuario.Apellidos} onChange={((e) => setUsuario({...usuario, Apellidos: e.target.value}))} required />
+            <input type="text" value={usuario.apellidos} onChange={(e) => setUsuario({...usuario, apellidos: e.target.value})} required />
             <IconLastName></IconLastName>
             <span className={styles.line}></span>
             <span className={styles.textp}>Apellidos</span>
           </div>
           <div className={styles.inputregister}>
-            <input type="text" value={usuario.Usuario} onChange={((e) => setUsuario({...usuario, Usuario: e.target.value }))} required />
+            <input type="text" value={usuario.usuario} onChange={(e) => setUsuario({...usuario, usuario: e.target.value })} required />
             <IconNinja></IconNinja>
             <span className={styles.line}></span>
             <span className={styles.textp}>Usuario</span>
           </div>
           <div className={styles.inputregister}>
-            <input type="text" value={usuario.Correo} onChange={((e)=> setUsuario({...usuario, Correo:e.target.value}))} required />
+            <input type="text" value={usuario.correo} onChange={(e)=> setUsuario({...usuario, correo:e.target.value})} required />
             <IconEmail></IconEmail>
             <span className={styles.line}></span>
-            <span className={styles.textp}>Correo Electronico</span>
+            <span className={styles.textp}>correo Electronico</span>
           </div>
           <div className={styles.inputregister}>
-            <input type="password" value={usuario.Password} onChange={((e) => setUsuario({...usuario, Password: e.target.value}))} required />
+            <input type="password" value={usuario.password} onChange={(e) => setUsuario({...usuario, password: e.target.value})} required />
             <IconPassword></IconPassword>
             <span className={styles.line}></span>
             <span className={styles.textp}>Contraseña</span>
           </div>
           <div className={styles.inputregister}>
-            <input type="password"  required />
+            <input type="password" value={passwordval} onChange={(e) => setPasswordval(e.target.value)} required />
             <IconPasswordOpen></IconPasswordOpen>
             <span className={styles.line}></span>
             <span className={styles.textp}>Repetir Contraseña</span>

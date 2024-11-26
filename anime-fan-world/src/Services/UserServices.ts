@@ -1,30 +1,21 @@
-export interface Usuario {
-  Nombres: string;
-  Apellidos: string;
-  Usuario: string;
-  Password: string;
-  Correo:string;
-}
+import { Usuario } from "../Interfaces/UserInterface";
 
-export const fetchCrearCuentaUsuario = (usuario: Usuario): Promise<string> => {
-  return fetch("http://localhost:8080/api/usuario", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(usuario),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error en la solicitud");
-      }
-      return response.text();
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((error) => {
-      console.error("Error al obtener el post:", error);
-      throw error;
+export const fetchCrearCuentaUsuario = async (usuario: Usuario) => {
+  try {
+    const response = await fetch("http://localhost:8080/api/usuario", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
     });
+
+    if (!response.ok) {
+      throw new Error("Error al crear la cuenta");
+    }
+    return await response.text();
+    
+  } catch (error) {
+    throw console.error(error);
+  }
 };
