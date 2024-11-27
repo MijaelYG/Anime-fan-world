@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.serviceanimefw.serviceanimefw.DTO.LoginUsuarioDTO;
 import com.serviceanimefw.serviceanimefw.DTO.UsuarioDTO;
 import com.serviceanimefw.serviceanimefw.Entity.Rol;
 import com.serviceanimefw.serviceanimefw.Entity.Usuario;
@@ -80,9 +81,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDTO VerificarSesion(UsuarioDTO usuarioDTO) {
-        // Usuario usuario = mapearEntidad(usuarioDTO);
-        return usuarioDTO;
+    public String LoginUsuario(LoginUsuarioDTO loginUsuarioDTO) {
+        Usuario usuario = mapearLoginEntidad(loginUsuarioDTO);
+        String respuesta = usuarioRepository.LoginVerification(usuario.getUsuario(), usuario.getPassword());
+        if (respuesta == null) {
+            return "";
+        } else {
+            if (respuesta.equals("2")) {
+                return "ANIMEFW2024_TOKENAUTHAFW_USER";
+            } else if(respuesta.equals("1")){
+                return "ANIMEFW2024_TOKENAUTHAFW_ADMIN_ANIMEFW170502";
+            }else{
+                return "";
+            }
+        }
     }
 
     private UsuarioDTO mapearDTO(Usuario usuario) {
@@ -109,6 +121,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setPassword(usuarioDTO.getPassword());
         usuario.setEstado(usuarioDTO.getEstado());
 
+        return usuario;
+    }
+
+    private Usuario mapearLoginEntidad(LoginUsuarioDTO loginUsuarioDTO) {
+        Usuario usuario = new Usuario();
+        usuario.setUsuario(loginUsuarioDTO.getUsuario());
+        usuario.setPassword(loginUsuarioDTO.getPassword());
         return usuario;
     }
 

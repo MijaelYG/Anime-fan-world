@@ -69,7 +69,7 @@ const Register = () => {
             <input type="text" value={usuario.correo} onChange={(e)=> setUsuario({...usuario, correo:e.target.value})} required />
             <IconEmail></IconEmail>
             <span className={styles.line}></span>
-            <span className={styles.textp}>correo Electronico</span>
+            <span className={styles.textp}>Correo Electronico</span>
           </div>
           <div className={styles.inputregister}>
             <input type="password" value={usuario.password} onChange={(e) => setUsuario({...usuario, password: e.target.value})} required />

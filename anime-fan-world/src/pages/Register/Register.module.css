@@ -1,9 +1,14 @@
 .mainregister{
+    background-image: url(../../assets/img/loginbanner.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     height: 100vh;
+    width: auto;
     display: flex;
 }
 
-.contregister{
+.contregister{  
     background-color: rgb(255, 255, 255);
     width: 640px;
     border-radius: 15px;
@@ -76,7 +81,7 @@
 }
 
 .inputregister svg path{
-    fill: rgb(201, 201, 201);
+    fill: rgb(190, 190, 190);
     transition: 0.2s;
 }
 
@@ -90,14 +95,14 @@
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: rgb(201, 201, 201);
+    background-color: rgb(190, 190, 190);
     bottom: -2px;
     transition: 0.2s linear;
 }
 
 .textp{
     position: absolute;
-    color: rgb(201, 201, 201);
+    color: rgb(185, 185, 185);
     top: 0;
     bottom: 0;
     margin: auto;
