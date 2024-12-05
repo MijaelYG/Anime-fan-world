@@ -8,7 +8,12 @@ import lombok.Setter;
 @Setter
 @Getter
 public class LoginUsuarioDTO {
+
+    private Long id;
+
     private String usuario;
 
     private String password;
+
+    private String message;
 }

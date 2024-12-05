@@ -12,8 +12,10 @@ const Login = () => {
   const [loading, setLoading] = useState(true);
   const [valuelogin, setValuelogin] = useState(true);
   const [login, setLogin] = useState<LoginUser>({
+    id: null,
     usuario: "",
     password: "",
+    message: null,
   });
   const navegation = useNavigate();
   const tokencod = localStorage.getItem("token");
@@ -34,6 +36,7 @@ const Login = () => {
     } else {
       const respuesta = await FetchIniciarSesion(login);
       if (respuesta) {
+        console.log(localStorage.getItem("token"))
         setValuelogin(false);
       } else {
         console.log("error datos incorrectos" + respuesta);

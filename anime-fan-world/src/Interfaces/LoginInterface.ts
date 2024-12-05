@@ -1,4 +1,6 @@
 export interface LoginUser {
-    usuario: string;
-    password: string;
-  }
+  id: number | null;
+  usuario: string;
+  password: string;
+  message: string | null;
+}

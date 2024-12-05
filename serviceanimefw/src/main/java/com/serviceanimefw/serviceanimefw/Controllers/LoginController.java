@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.serviceanimefw.serviceanimefw.DTO.LoginUsuarioDTO;
-import com.serviceanimefw.serviceanimefw.Services.Service.UsuarioService;
+import com.serviceanimefw.serviceanimefw.Services.Service.LoginService;
 
 
 @RestController
@@ -18,12 +18,12 @@ import com.serviceanimefw.serviceanimefw.Services.Service.UsuarioService;
 public class LoginController {
 
     @Autowired
-    UsuarioService usuarioService;
+    LoginService loginService;
 
     @PostMapping("/iniciar")
     public ResponseEntity<?> LoginUsuario(@RequestBody LoginUsuarioDTO loginUsuarioDTO) {
         try {
-            String respuesta = usuarioService.LoginUsuario(loginUsuarioDTO);
+            LoginUsuarioDTO respuesta = loginService.LoginUsuario(loginUsuarioDTO.getUsuario(), loginUsuarioDTO.getPassword());
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

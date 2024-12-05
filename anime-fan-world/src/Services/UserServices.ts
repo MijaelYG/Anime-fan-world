@@ -21,26 +21,24 @@ export const fetchCrearCuentaUsuario = async (usuario: Usuario) => {
   }
 };
 
-export const FetchIniciarSesion = async (usuario: LoginUser) =>{
+export const FetchIniciarSesion = async (loginuser: LoginUser) =>{
   try {
     const response = await fetch("http://localhost:8080/api/login/iniciar",{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(usuario),
+      body: JSON.stringify(loginuser),
     })
     if(!response.ok){
       throw new Error("Usuario o Contraseña Incorrectas"); 
     }
-    const respuesta = await response.text();
-    if(respuesta == ""){
+    const respuesta = await response.json();
+    localStorage.setItem("token",respuesta.message);
+    if(respuesta.message == "El usuario no existe"){
       return false
-    }else if (respuesta == "ANIMEFW2024_TOKENAUTHAFW_USER"){
-      localStorage.setItem("token",respuesta);
-      return true
-    }else if (respuesta == "ANIMEFW2024_TOKENAUTHAFW_ADMIN_ANIMEFW170502"){
-      localStorage.setItem("token",respuesta);
+    }else {
+      localStorage.setItem("token",respuesta.message);
       return true
     }
   } catch (error) {
