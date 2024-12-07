@@ -1,11 +1,13 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home/Home";
-import Navleft from "./components/Navleft";
-import Header from "./components/Header";
+import Navleft from "./components/NavLeft/Navleft";
+import Header from "./components/Header/Header";
 import Search from "./pages/Search/Search";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
+import { UserProvider } from "./Context/UserProvider";
+
 
 function App() {
   const Location = useLocation();
@@ -14,6 +16,7 @@ function App() {
 
   return (
     <>
+    <UserProvider>
       {ubicacionpath && (
         <>
           <Navleft />
@@ -28,6 +31,7 @@ function App() {
           <Route path="/Register" element={<Register />}></Route>
         </Routes>
       </div>
+      </UserProvider>
     </>
   );
 }

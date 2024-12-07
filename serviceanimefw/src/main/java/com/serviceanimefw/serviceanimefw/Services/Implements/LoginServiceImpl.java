@@ -18,24 +18,40 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public LoginUsuarioDTO LoginUsuario(String usuario, String password) {
-        Optional<Usuario> usuarioE = loginRepository.LoginVerification(usuario, password);
-        if (usuarioE.isPresent()) {
-            LoginUsuarioDTO loginUsuarioDTO = mapearLoginDTO(usuarioE.get());
-            if (usuarioE.get().getRol().getId() == 2) {
-                loginUsuarioDTO.setMessage("ANIMEFW2024_TOKENAUTHAFW_USER");
-                return loginUsuarioDTO;
-            } else if(usuarioE.get().getRol().getId() == 1){
-                loginUsuarioDTO.setMessage("ANIMEFW2024_TOKENAUTHAFW_ADMIN_ANIMEFW170502");
-                return loginUsuarioDTO;
-            }else{
-                loginUsuarioDTO.setMessage("El usuario no tiene un rol asignado");
+        LoginUsuarioDTO loginUsuarioDTO = new LoginUsuarioDTO();
+        String UsuarioV = loginRepository.UsuarioVerification(usuario);
+        String PasswordV = loginRepository.PasswordVerification(password);
+        if(UsuarioV == null && PasswordV == null){
+            loginUsuarioDTO.setMessage("0");
+            return loginUsuarioDTO;
+        }else if(UsuarioV == null){
+            loginUsuarioDTO.setMessage("1");
+            return loginUsuarioDTO;
+        }else if(PasswordV == null){
+            loginUsuarioDTO.setMessage("1");
+            return loginUsuarioDTO;
+        }else{
+            Optional<Usuario> usuarioE = loginRepository.LoginVerification(UsuarioV, PasswordV);
+            if (usuarioE.isPresent()) {
+                loginUsuarioDTO = mapearLoginDTO(usuarioE.get());
+                if (usuarioE.get().getRol().getId() == 2) {
+                    loginUsuarioDTO.setMessage("ANIMEFW2024_TOKENAUTHAFW_USER");
+                    return loginUsuarioDTO;
+                } else if(usuarioE.get().getRol().getId() == 1){
+                    loginUsuarioDTO.setMessage("ANIMEFW2024_TOKENAUTHAFW_ADMIN_ANIMEFW170502");
+                    return loginUsuarioDTO;
+                }else{
+                    loginUsuarioDTO.setId(null);
+                    loginUsuarioDTO.setPassword(null);
+                    loginUsuarioDTO.setMessage("-1");
+                    return loginUsuarioDTO;
+                }
+            } else {
+                loginUsuarioDTO.setMessage("0");
                 return loginUsuarioDTO;
             }
-        } else {
-            LoginUsuarioDTO loginUsuarioDTO = new LoginUsuarioDTO();
-            loginUsuarioDTO.setMessage("El usuario no existe");
-            return loginUsuarioDTO;
         }
+        
     }
 
     private LoginUsuarioDTO mapearLoginDTO(Usuario usuario) {

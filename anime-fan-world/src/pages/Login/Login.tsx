@@ -4,13 +4,16 @@ import IconPassword from "../../assets/Icons/IconPassword";
 import LoginBoy from "../../assets/img/LoginBoy.webp";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState } from "react";
 import { LoginUser } from "../../Interfaces/LoginInterface";
 import { FetchIniciarSesion } from "../../Services/UserServices";
+import { UserContext } from "../../Context/UserContext";
 
 const Login = () => {
+
   const [loading, setLoading] = useState(true);
   const [valuelogin, setValuelogin] = useState(true);
+  const {setId,setUsuario} = useContext(UserContext);
   const [login, setLogin] = useState<LoginUser>({
     id: null,
     usuario: "",
@@ -35,16 +38,22 @@ const Login = () => {
       console.log("sin espacios");
     } else {
       const respuesta = await FetchIniciarSesion(login);
-      if (respuesta) {
+      if (respuesta == 0) {
+        console.log("La cuenta no existe.");
+      } else if(respuesta == 1){
+        console.log("La contraseña o el usuario es incorrecto." );
+      }else if(respuesta == -1){
+        console.log("Hubo un problema con su cuenta.")
+      }else{
         console.log(localStorage.getItem("token"))
         setValuelogin(false);
-      } else {
-        console.log("error datos incorrectos" + respuesta);
+        setId(respuesta.id)
+        setUsuario(respuesta.usuario)
       }
     }
   };
 
-  if (loading) {
+ if (loading) {
     return null ;
   }
 

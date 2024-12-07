@@ -1,10 +1,5 @@
-import { useEffect } from "react";
-import Popularanime from "../../components/Popularanime"
+import Popularanime from "../../components/PopularAnime/Popularanime"
 const Home = () => {
-  const tokencod = localStorage.getItem("token");
-  useEffect(() => {
-    console.log(tokencod);
-  }, []);
   return (
     <Popularanime></Popularanime>
   )

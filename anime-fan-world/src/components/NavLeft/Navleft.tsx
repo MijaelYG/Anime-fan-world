@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Arrowbtnhome from "../assets/Icons/Arrowbtnhome";
+import Arrowbtnhome from "../../assets/Icons/Arrowbtnhome";
 import "./Navleft.css"
 
 const Navleft = () => {

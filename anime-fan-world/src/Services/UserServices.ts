@@ -31,15 +31,19 @@ export const FetchIniciarSesion = async (loginuser: LoginUser) =>{
       body: JSON.stringify(loginuser),
     })
     if(!response.ok){
-      throw new Error("Usuario o Contraseña Incorrectas"); 
+      throw new Error("Hubo un error interno."); 
     }
     const respuesta = await response.json();
     localStorage.setItem("token",respuesta.message);
-    if(respuesta.message == "El usuario no existe"){
-      return false
-    }else {
+    if(respuesta.message == "0"){
+      return 0
+    }else if(respuesta.message == "1"){
+      return 1
+    }else if (respuesta.message == "-1"){
+      return -1
+    }else{
       localStorage.setItem("token",respuesta.message);
-      return true
+      return respuesta
     }
   } catch (error) {
     throw console.error(error);

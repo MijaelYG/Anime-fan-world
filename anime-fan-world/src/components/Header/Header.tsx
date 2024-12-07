@@ -1,12 +1,16 @@
 //import { useState } from "react";
-import IconNinja from "../assets/Icons/Iconninja";
-import Logo from "../assets/img/IconoAFW.webp";
-import Searchicon from "../assets/Icons/Searchicon";
-import Arrowdoubledown from "../assets/Icons/Arrowdoubledown";
+import IconNinja from "../../assets/Icons/IconNinja";
+import Logo from "../../assets/img/IconoAFW.webp";
+import Searchicon from "../../assets/Icons/Searchicon";
+import Arrowdoubledown from "../../assets/Icons/Arrowdoubledown";
 import { Link } from "react-router-dom";
-import styles from "../components/Header.module.css";
+import styles from "./Header.module.css";
+import { useContext, useState } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 const Header = () => {
+  const { id, usuario } = useContext(UserContext);
+  const [optionsUser, setOptionsUser] = useState<Boolean>(false);
   /*const [arrayABC] = useState([
     "G",
     "H",
@@ -40,6 +44,10 @@ const Header = () => {
       </div>
     );
   }*/
+
+  function BtnOptions() {
+    setOptionsUser(true);
+  }
   return (
     <div className={styles.headermain}>
       <div className={styles.logoabc}>
@@ -70,12 +78,24 @@ const Header = () => {
             <Searchicon />
           </div>
         </div>
-        <Link className={styles.login} to={"/Login"}>
-          <div className={styles.loginlogo}>
-            <IconNinja />
-          </div>
-          <div className={styles.textlogin}>LOGIN</div>
-        </Link>
+        {usuario && id ? (
+          <>
+            <button onClick={BtnOptions} className={styles.loginbtn}>
+              <div className={styles.loginlogo}>
+                <IconNinja />
+              </div>
+              <div className={styles.textlogin}>{usuario}</div>
+              {optionsUser && <div className={optionsUser && "prueba"}></div>}
+            </button>
+          </>
+        ) : (
+          <Link className={styles.login} to={"/Login"}>
+            <div className={styles.loginlogo}>
+              <IconNinja />
+            </div>
+            <div className={styles.textlogin}>LOGIN</div>
+          </Link>
+        )}
       </div>
     </div>
   );
